@@ -39,3 +39,18 @@ spec:
       - name: persistent-storage
         persistentVolumeClaim:
           claimName: nginx-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: nginx
+  name: nginx
+spec:
+  ports:
+  - port: 8036
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: nginx
+  type: LoadBalancer
