@@ -9,7 +9,7 @@ spec:
   storageClassName: openebs-hostpath
   resources:
     requests:
-      storage: 5Gi
+      storage: 500Mi
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -19,11 +19,12 @@ metadata:
   labels:
     app: nginx
 spec:
+  replicas: 3
   selector:
     matchLabels:
       app: nginx
   strategy:
-    type: Recreate
+    type: RollingUpdate
   template:
     metadata:
       labels:
